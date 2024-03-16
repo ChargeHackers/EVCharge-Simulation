@@ -1,0 +1,184 @@
+body {
+    background-color: #121212; /* Your existing styles */
+    color: #0f0;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    justify-content: center; /* Centers the content */
+    padding-top: 70px; /* Ensure content starts below the navbar */
+}
+
+.container {
+    display: flex;
+    align-items: center; /* Aligns children vertically */
+    justify-content: space-between; /* Spaces out the children */
+    width: 100%;
+    max-width: 1200px; /* Adjust based on your preference */
+    padding-top: 20px; /* Added padding to account for the navigation bar */
+}
+
+.ai-charger, .driver {
+    flex-shrink: 0; /* Prevents the images from shrinking */
+    width: 300px; /* Adjust based on your preference */
+    height: auto; /* Keeps the aspect ratio of the images */
+}
+
+#grid {
+    display: table;
+    margin: 20px; /* Adjust or remove margin as needed */
+    /* Your existing grid styles */
+}
+
+/* Your existing styles for .row, .cell, etc. */
+
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #54fbfbc4; /* Neon border color */
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    background-color: #1a1a1a; /* Slightly lighter dark background for cells */
+}
+
+img {
+    max-width: 100%; /* Optional: Adjust based on your preference */
+    transition: opacity 0.5s ease;
+}
+
+@keyframes pulse {
+    0% {
+      box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    }
+    50% {
+      box-shadow: 0 0 15px #00ffff, 0 0 20px #00ffff;
+    }
+    100% {
+      box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    }
+}
+
+.charger_icon:not(.alone) {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+  
+
+img.alone {
+    opacity: 1; /* Full opacity when alone */
+}
+
+
+.alone {
+    filter: grayscale(100%);
+}
+
+
+/* New class for overlapping icons */
+.ev_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7; /* Transparency for overlapping icons */
+}
+
+.ev_icon.high {
+    filter: hue-rotate(90deg) brightness(150%); /* Green */
+}
+
+.ev_icon.medium {
+    filter: hue-rotate(40deg) brightness(150%); /* Yellow */
+}
+
+.ev_icon.low {
+    filter: hue-rotate(0deg) brightness(150%); /* Red */
+}
+
+
+.feeds {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.ev-feed, .charger-feed {
+    flex: 1;
+    padding: 10px;
+    color: #00ffff; /* Neon text color for consistency */
+    background-color: #2a2a2a; /* Slightly lighter than body background */
+}
+
+.ev-feed h2, .charger-feed h2 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 5px 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #121212; /* Dark background for NavBar */
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 20px 10px;
+}
+
+.navbar a {
+    float: left;
+    color: #00ffff; /* Neon text color */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* Light background on hover */
+    color: black; /* Text color change on hover */
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card {
+    flex-basis: 45%; /* Adjust based on preference */
+    background-color: #1a1a1a;
+    color: #0f0;
+    border: 1px solid #00ffff73;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 255, 255, 0.2), 0 6px 20px 0 rgba(0, 255, 255, 0.19); /* Optional */
+}
+
+.card h2 {
+    text-align: center;
+}
+
+.card ul {
+    list-style: none; /* Removes the default list bullets */
+}
+
+.card li::before {
+    content: "⚡"; /* Adds a custom bullet */
+    color: #0f0; /* Neon color */
+    display: inline-block; 
+    width: 1.5em; /* Ensures alignment */
+}
