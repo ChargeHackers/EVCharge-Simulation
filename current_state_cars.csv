@@ -1,0 +1,11 @@
+id,state,pos_x,pos_y,battery_cap,battery_level_percentage
+0,pickup,0,15,80,0.96
+1,pickup,15,0,80,0.96
+2,pickup,15,0,80,0.96
+3,pickup,15,0,80,0.96
+4,dropoff,9,6,80,0.96
+5,pickup,13,2,80,0.96
+6,pickup,7,8,80,0.96
+7,dropoff,12,3,80,0.96
+8,pickup,0,15,80,0.96
+9,pickup,15,0,80,0.96

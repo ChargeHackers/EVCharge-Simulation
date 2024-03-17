@@ -7,6 +7,7 @@ import time
 import json
 from threading import Event
 import math
+import csv
 
 # At the start of your code, create an event object
 stop_event = Event()
@@ -205,23 +206,61 @@ class City(mesa.Model):
         with open('current_state.json', 'w') as f:
             json.dump(data, f, indent=4)
 
+        # Export cars to CSV
+        with open('current_state_cars.csv', 'w', newline='') as csvfile:
+            fieldnames = ['id', 'state', 'pos_x', 'pos_y', 'battery_cap', 'battery_level_percentage']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            if csvfile.tell() == 0:
+                writer.writeheader()
+
+            for car in self.schedule.agents:
+                if isinstance(car, Car):
+                    writer.writerow({
+                        'id': car.unique_id,
+                        'state': car.state,
+                        'pos_x': car.pos[0],
+                        'pos_y': car.pos[1],
+                        'battery_cap': car.capacity,
+                        'battery_level_percentage': round(car.battery,2)
+                    })
+                
+        # Export stations to CSV
+        with open('current_state_stations.csv', 'w', newline='') as csvfile:
+            fieldnames = ['pos_x', 'pos_y', 'price_per_kwh', 'charger_id', 'power_budget']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            if csvfile.tell() == 0:
+                writer.writeheader()
+
+            for pos, charger in self.charging_stations.items():
+                writer.writerow({
+                    'pos_x': pos[0],
+                    'pos_y': pos[1],
+                    'price_per_kwh': charger.rate,
+                    'charger_id': charger.id,
+                    'power_budget': charger.capacity
+                })
+
     def export_charging_rates(self):
-        rates_data = {
-            "simulation_time": self.simulation_time,
-            "stations": []
-        }
-        for pos, charger in self.charging_stations.items():
-            rates_data["stations"].append({
-                "pos": pos,
-                "rate": charger.rate,
-                "charger_id": charger.id,
-                "simulation_hour": (self.simulation_time * TIMESTEP) // 60
-            })
-        
-        # Append data to a JSON file
-        with open('charging_rates.json', 'a') as f:
-            json.dump(rates_data, f)
-            f.write('\n')  # New line for each timestep's data
+        with open('charging_rates.csv', 'a', newline='') as csvfile:
+            fieldnames = ['simulation_time', 'pos_x', 'pos_y', 'rate', 'charger_id', 'simulation_hour']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            # If the file is new, write the header
+            if csvfile.tell() == 0:
+                writer.writeheader()
+
+            for pos, charger in self.charging_stations.items():
+                writer.writerow({
+                    'simulation_time': self.simulation_time,
+                    'pos_x': pos[0],
+                    'pos_y': pos[1],
+                    'rate': charger.rate,
+                    'charger_id': charger.id,
+                    'simulation_hour': (self.simulation_time * TIMESTEP) // 60
+                })
+
 
     
     def print(self):
