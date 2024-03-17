@@ -192,3 +192,13 @@ li {
     padding: 10px; /* Optional: adds some padding inside the component */
     margin: 0 auto; /* Optional: centers the component if its width is less than 100% */
 }
+
+#chargerFeedList {
+    width: 100%; /* Adjust the width as needed */
+    max-height: 400px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: adds a border around the component */
+    box-sizing: border-box; /* Ensures padding is included in the component's size */
+    padding: 10px; /* Optional: adds some padding inside the component */
+    margin: 0 auto; /* Optional: centers the component if its width is less than 100% */
+}
