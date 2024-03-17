@@ -171,6 +171,7 @@ class City(mesa.Model):
         self.grid = mesa.space.MultiGrid(rows, cols, False)
         self.schedule = mesa.time.BaseScheduler(self)
         self.charging_stations = {}
+        self.simulation_time = 0
     
     def place(self, car, pos):
         # Places a car on the grid
@@ -181,12 +182,17 @@ class City(mesa.Model):
         self.schedule.step()
         for pos in self.charging_stations:
             self.charging_stations[pos].step()
+        self.simulation_time += 1  # Increment simulation time
+        # Update rates and export state if needed
+        if self.simulation_time % (24*4) == 0:  # Reset every 24 hours
+            self.simulation_time = 0
 
     def run_simulation(self, steps):
         while not stop_event.is_set():  # Check if the event is set
             self.step()
             self.print()
             self.export_state()
+            self.export_charging_rates()
             time.sleep(0.4)
 
     def export_state(self):
@@ -198,6 +204,25 @@ class City(mesa.Model):
         }
         with open('current_state.json', 'w') as f:
             json.dump(data, f, indent=4)
+
+    def export_charging_rates(self):
+        rates_data = {
+            "simulation_time": self.simulation_time,
+            "stations": []
+        }
+        for pos, charger in self.charging_stations.items():
+            rates_data["stations"].append({
+                "pos": pos,
+                "rate": charger.rate,
+                "charger_id": charger.id,
+                "simulation_hour": (self.simulation_time * TIMESTEP) // 60
+            })
+        
+        # Append data to a JSON file
+        with open('charging_rates.json', 'a') as f:
+            json.dump(rates_data, f)
+            f.write('\n')  # New line for each timestep's data
+
     
     def print(self):
         header = list(range(self.cols))

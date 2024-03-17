@@ -2,103 +2,103 @@
     "cars": [
         {
             "id": 0,
-            "state": "pickup",
+            "state": "dropoff",
             "pos": [
-                19,
-                14
+                5,
+                21
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6525000000000074
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 1,
-            "state": "idle",
+            "state": "dropoff",
             "pos": [
-                8,
-                18
+                19,
+                7
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6500000000000075
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 2,
             "state": "pickup",
             "pos": [
-                0,
-                16
+                19,
+                7
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6500000000000075
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 3,
             "state": "dropoff",
             "pos": [
-                1,
-                11
+                16,
+                2
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6500000000000075
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 4,
             "state": "dropoff",
             "pos": [
-                13,
-                2
+                12,
+                14
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6525000000000074
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 5,
             "state": "dropoff",
             "pos": [
-                8,
-                16
+                11,
+                2
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6550000000000074
+            "battery_level_percentage": 0.9375000000000013
         },
         {
             "id": 6,
-            "state": "pickup",
+            "state": "dropoff",
             "pos": [
-                14,
-                16
+                13,
+                13
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6500000000000075
+            "battery_level_percentage": 0.9350000000000014
         },
         {
             "id": 7,
-            "state": "dropoff",
+            "state": "pickup",
             "pos": [
-                2,
-                9
+                15,
+                10
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6525000000000074
+            "battery_level_percentage": 0.9375000000000013
         },
         {
             "id": 8,
-            "state": "dropoff",
+            "state": "pickup",
             "pos": [
-                18,
-                4
+                5,
+                16
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6550000000000074
+            "battery_level_percentage": 0.9375000000000013
         },
         {
             "id": 9,
-            "state": "dropoff",
+            "state": "pickup",
             "pos": [
-                22,
-                7
+                15,
+                11
             ],
             "battery_cap": 80,
-            "battery_level_percentage": 0.6525000000000074
+            "battery_level_percentage": 0.9350000000000014
         }
     ],
     "stations": [
@@ -107,7 +107,7 @@
                 18,
                 15
             ],
-            "price_per_kwh": 0.96,
+            "price_per_kwh": 1.97,
             "charger_id": 19,
             "power_budget": 10000
         },
@@ -116,7 +116,7 @@
                 15,
                 8
             ],
-            "price_per_kwh": 0.99,
+            "price_per_kwh": 1.95,
             "charger_id": 19,
             "power_budget": 10000
         },
@@ -125,7 +125,7 @@
                 21,
                 8
             ],
-            "price_per_kwh": 0.88,
+            "price_per_kwh": 1.96,
             "charger_id": 19,
             "power_budget": 10000
         },
@@ -134,7 +134,7 @@
                 9,
                 17
             ],
-            "price_per_kwh": 0.91,
+            "price_per_kwh": 1.97,
             "charger_id": 19,
             "power_budget": 10000
         },
@@ -143,7 +143,7 @@
                 17,
                 10
             ],
-            "price_per_kwh": 0.92,
+            "price_per_kwh": 1.97,
             "charger_id": 19,
             "power_budget": 10000
         }
