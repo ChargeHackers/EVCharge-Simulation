@@ -64,7 +64,11 @@
                         // Populate with updated data
                         data.evs.forEach(ev => {
                             var li = document.createElement('li');
-                            var text = document.createTextNode(`(${ev.x}, ${ev.y}): ${ev.state}`);
+                            var isSmartText = ev.is_smart ? "⚡" : ""; 
+                            var text = document.createTextNode(`${isSmartText}(${ev.x}, ${ev.y}): ${ev.state}`);
+                            if (ev.is_smart) {
+                                li.classList.add('glowing-text');
+                            }
                             var statusBar = document.createElement('div');
                             statusBar.style.width = "100%";
                             statusBar.style.backgroundColor = "#555"; // Background of the status bar

@@ -1,6 +1,7 @@
 import mesa
 import numpy as np
 from numpy import random
+import random as reel_random
 random.seed(189)
 import threading
 import time
@@ -8,6 +9,7 @@ import json
 from threading import Event
 import math
 import csv
+from ai import should_charge
 
 # At the start of your code, create an event object
 stop_event = Event()
@@ -43,6 +45,7 @@ class Car(mesa.Agent):
         self.pickup = None
         self.charging_time = 0 # minutes to finish charging to 100
         self.profit = 0
+        self.is_smart = bool(reel_random.getrandbits(1))
 
     def go_charge(self):
         self.state = 'going to recharge'
@@ -56,7 +59,10 @@ class Car(mesa.Agent):
         total_dist = dist_to_pickup + dist_to_dest + dist_to_charging
         battery_needed = total_dist * FUEL
 
-        if self.battery * self.capacity >= battery_needed:
+        if should_charge(self, self.model.charging_stations[closest_station]) and self.is_smart:
+            #print(closest_station)
+            self.go_charge()
+        elif self.battery * self.capacity >= battery_needed:
             self.state = 'pickup'
             self.pickup = pickup
             self.dest = dropoff
@@ -200,7 +206,7 @@ class City(mesa.Model):
         # Example structure, adapt as needed
         #print(self.charging_stations)
         data = {
-            "cars": [{ "id": car.unique_id, "state": car.state, "pos": car.pos, "battery_cap": car.capacity, "battery_level_percentage": car.battery } for car in self.schedule.agents if isinstance(car, Car)],
+            "cars": [{ "id": car.unique_id, "state": car.state, "pos": car.pos, "battery_cap": car.capacity, "battery_level_percentage": car.battery, "is_smart" : car.is_smart } for car in self.schedule.agents if isinstance(car, Car)],
             "stations": [{ "pos": pos, "price_per_kwh": self.charging_stations[pos].rate, "charger_id": self.charging_stations[pos].id, "power_budget": self.charging_stations[pos].capacity } for pos in self.charging_stations]
         }
         with open('current_state.json', 'w') as f:

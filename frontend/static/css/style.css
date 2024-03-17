@@ -202,3 +202,8 @@ li {
     padding: 10px; /* Optional: adds some padding inside the component */
     margin: 0 auto; /* Optional: centers the component if its width is less than 100% */
 }
+
+.glowing-text {
+    color: #fff; /* Change this based on your preference */
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8), 0 0 0px rgba(255, 255, 255, 0.8), 0 0 10px #ac862d, 0 0 10px #b0a829, 0 0 50px #f0f, 0 0 10px #f0f, 0 0 0px #f0f;
+}

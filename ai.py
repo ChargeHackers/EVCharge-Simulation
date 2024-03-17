@@ -1,13 +1,13 @@
-def should_charge(car, city):
+def should_charge(car, nearest_charger):
     """
     Determines whether the car should go to charge or idle based on its battery level,
     the cost of the nearest charger, and the estimated cost of charging in the evening.
     """
-
-    nearest_charger = car.find_closest_station()
+    print(nearest_charger.rate, car.battery)
+    #nearest_charger = car.find_closest_station()
  
     # Decide based on battery level and cost comparison
-    if  nearest_charger.hourly_cost < ( nearest_charger.base_hourly_cost * 1.2 )  :
-        return 'going to recharge'
+    if  nearest_charger.rate < 0.8 and car.battery < 0.6 :
+        return True
     else:
-        return 'idle'
+        return False
