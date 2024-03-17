@@ -38,8 +38,8 @@ body {
 
 .cell {
     display: table-cell;
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     border: 1px solid #54fbfbc4; /* Neon border color */
     text-align: center;
     vertical-align: middle;
@@ -181,4 +181,14 @@ li {
     color: #0f0; /* Neon color */
     display: inline-block; 
     width: 1.5em; /* Ensures alignment */
+}
+
+#evFeedList {
+    width: 100%; /* Adjust the width as needed */
+    max-height: 400px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: adds a border around the component */
+    box-sizing: border-box; /* Ensures padding is included in the component's size */
+    padding: 10px; /* Optional: adds some padding inside the component */
+    margin: 0 auto; /* Optional: centers the component if its width is less than 100% */
 }

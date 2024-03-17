@@ -1,0 +1,151 @@
+{
+    "cars": [
+        {
+            "id": 0,
+            "state": "pickup",
+            "pos": [
+                3,
+                8
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8225000000000038
+        },
+        {
+            "id": 1,
+            "state": "dropoff",
+            "pos": [
+                22,
+                7
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8225000000000038
+        },
+        {
+            "id": 2,
+            "state": "dropoff",
+            "pos": [
+                8,
+                9
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8225000000000038
+        },
+        {
+            "id": 3,
+            "state": "dropoff",
+            "pos": [
+                10,
+                19
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8225000000000038
+        },
+        {
+            "id": 4,
+            "state": "dropoff",
+            "pos": [
+                16,
+                12
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8250000000000037
+        },
+        {
+            "id": 5,
+            "state": "dropoff",
+            "pos": [
+                18,
+                18
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8250000000000037
+        },
+        {
+            "id": 6,
+            "state": "pickup",
+            "pos": [
+                13,
+                8
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8225000000000038
+        },
+        {
+            "id": 7,
+            "state": "pickup",
+            "pos": [
+                9,
+                13
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8250000000000037
+        },
+        {
+            "id": 8,
+            "state": "pickup",
+            "pos": [
+                1,
+                15
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8250000000000037
+        },
+        {
+            "id": 9,
+            "state": "pickup",
+            "pos": [
+                9,
+                3
+            ],
+            "battery_cap": 80,
+            "battery_level_percentage": 0.8250000000000037
+        }
+    ],
+    "stations": [
+        {
+            "pos": [
+                18,
+                15
+            ],
+            "price_per_kwh": 1,
+            "charger_id": 19,
+            "power_budget": 10000
+        },
+        {
+            "pos": [
+                15,
+                8
+            ],
+            "price_per_kwh": 1,
+            "charger_id": 19,
+            "power_budget": 10000
+        },
+        {
+            "pos": [
+                21,
+                8
+            ],
+            "price_per_kwh": 1,
+            "charger_id": 19,
+            "power_budget": 10000
+        },
+        {
+            "pos": [
+                9,
+                17
+            ],
+            "price_per_kwh": 1,
+            "charger_id": 19,
+            "power_budget": 10000
+        },
+        {
+            "pos": [
+                17,
+                10
+            ],
+            "price_per_kwh": 1,
+            "charger_id": 19,
+            "power_budget": 10000
+        }
+    ]
+}

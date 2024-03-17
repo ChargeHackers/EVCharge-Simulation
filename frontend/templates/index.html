@@ -8,6 +8,86 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             var evFeedList = document.getElementById('evFeedList');
+            function fetchData() {
+                fetch('/update-data')
+                    .then(response => response.json())
+                    .then(data => {
+                        //console.log(data); // For debugging
+                        
+                        // Clear existing grid content
+                        const grid = document.getElementById('grid');
+                        grid.innerHTML = '';
+
+                        // Rebuild the grid with updated data
+                        for (let y = 0; y < 25; y++) { // Assuming a 25x25 grid
+                            const row = document.createElement('div');
+                            row.className = 'row';
+                            for (let x = 0; x < 25; x++) {
+                                const cell = document.createElement('div');
+                                cell.className = 'cell';
+                                
+                                // Add EVs and chargers to the cell as needed
+                                data.evs.forEach(ev => {
+                                    if (ev.x == x && ev.y == y) {
+                                        // Add EV icon
+                                        const evIcon = document.createElement('img');
+                                        // Set src based on battery level, similar logic as in your server-side rendering
+                                        const batteryLevel = ev.battery_level_percentage;
+                                        evIcon.src = getEvIconSrc(batteryLevel);
+                                        evIcon.alt = "EV";
+                                        evIcon.className = "ev_icon";
+                                        evIcon.title = `State: ${ev.state}, Battery: ${batteryLevel}%, Capacity: ${ev.battery_cap} kWh`;
+                                        cell.appendChild(evIcon);
+                                    }
+                                });
+
+                                data.chargers.forEach(charger => {
+                                    if (charger.x == x && charger.y == y) {
+                                        // Add Charger icon
+                                        const chargerIcon = document.createElement('img');
+                                        chargerIcon.src = '{{ url_for("static", filename="images/charger_icon.png") }}'; // Assuming static path
+                                        chargerIcon.alt = "Charger";
+                                        chargerIcon.className = `charger_icon ${charger.alone ? 'alone' : ''}`;
+                                        cell.appendChild(chargerIcon);
+                                    }
+                                });
+
+                                row.appendChild(cell);
+                            }
+                            grid.appendChild(row);
+                        }
+                        // Assuming data.evs contains the updated list of EVs
+                        const evFeedList = document.getElementById('evFeedList');
+                        // Clear existing list items
+                        evFeedList.innerHTML = '';
+
+                        // Populate with updated data
+                        data.evs.forEach(ev => {
+                            var li = document.createElement('li');
+                            var text = document.createTextNode(`(${ev.x}, ${ev.y}): ${ev.state}`);
+                            var statusBar = document.createElement('div');
+                            statusBar.style.width = "100%";
+                            statusBar.style.backgroundColor = "#555"; // Background of the status bar
+                            var chargeLevel = document.createElement('div');
+                            
+                            chargeLevel.style.width = `${ev.battery_level_percentage}%`;
+                            chargeLevel.style.height = "20px"; // Height of the charge level bar
+                            chargeLevel.style.backgroundColor = getBatteryColor(ev.battery_level_percentage);
+                            chargeLevel.style.textAlign = "center";
+                            chargeLevel.style.lineHeight = "20px";
+                            chargeLevel.style.color = "white";
+                            chargeLevel.textContent = `${ev.battery_level_percentage}%`;
+                            
+                            statusBar.appendChild(chargeLevel);
+                            li.appendChild(text);
+                            li.appendChild(statusBar);
+                            evFeedList.appendChild(li);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+    
     
             {% for ev in evs %}
                 var li = document.createElement('li');
@@ -30,12 +110,19 @@
                 li.appendChild(statusBar);
                 evFeedList.appendChild(li);
             {% endfor %}
+            setInterval(fetchData, 100);
         });
     
         function getBatteryColor(percentage) {
             if (percentage > 50) return "rgb(88, 208, 88)"; // Green for high battery
             if (percentage > 20) return "rgb(210, 210, 58)"; // Yellow for medium battery
             return "rgb(204, 83, 83)"; // Red for low battery
+        }
+
+        function getEvIconSrc(batteryLevel) {
+            if (batteryLevel > 50) return '{{ url_for("static", filename="images/ev_icon_green.png") }}';
+            if (batteryLevel > 20) return '{{ url_for("static", filename="images/ev_icon_yellow.png") }}';
+            return '{{ url_for("static", filename="images/ev_icon_red.png") }}';
         }
     </script>
     
@@ -56,9 +143,9 @@
             </div>
         </div>
         <div id="grid">
-            {% for y in range(10) %}
+            {% for y in range(25) %}
             <div class="row">
-                {% for x in range(10) %}
+                {% for x in range(25) %}
                 <div class="cell">
                     {% for ev in evs %}
                         {% if ev.x == x and ev.y == y %}
