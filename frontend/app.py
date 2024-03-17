@@ -17,7 +17,7 @@ def get_simulation_data():
     # You might need to adjust the following logic based on your actual data structure and requirements
     for charger in chargers:
         charger["alone"] = True  # Initialize every charger as alone
-        print(charger["pos"])
+        print(charger["price_per_kwh"])
         charger["x"], charger["y"] = charger["pos"]  # Assuming 'pos' holds the x, y coordinates
         del charger["pos"]  # Remove 'pos' if not needed in the Flask app
 

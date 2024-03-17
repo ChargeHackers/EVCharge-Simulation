@@ -83,6 +83,18 @@
                             li.appendChild(statusBar);
                             evFeedList.appendChild(li);
                         });
+
+                        // Update charger feed list
+                        const chargerFeedList = document.getElementById('chargerFeedList');
+                        chargerFeedList.innerHTML = ''; // Clear existing list items
+                        
+                        data.chargers.forEach(charger => {
+                            const li = document.createElement('li');
+                            const text = document.createTextNode(`Charger at (${charger.x}, ${charger.y}): Rate ${charger.price_per_kwh} $/kWh`);
+                            
+                            li.appendChild(text);
+                            chargerFeedList.appendChild(li);
+                        });
                     })
                     .catch(error => console.error('Error fetching data:', error));
             }
