@@ -43,8 +43,11 @@ def get_simulation_data():
     }
     return chargers, evs, platform
 
-
 @app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/live-map')
 def index():
     chargers, evs, platform = get_simulation_data()
     return render_template('index.html', chargers=chargers, evs=evs, platform=platform)

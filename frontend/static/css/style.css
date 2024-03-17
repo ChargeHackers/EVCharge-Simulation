@@ -11,9 +11,9 @@ body {
 .container {
     display: flex;
     align-items: center; /* Aligns children vertically */
-    justify-content: space-between; /* Spaces out the children */
+    justify-content: center; /* Spaces out the children */
     width: 100%;
-    max-width: 1200px; /* Adjust based on your preference */
+    max-width: 1300px; /* Adjust based on your preference */
     padding-top: 20px; /* Added padding to account for the navigation bar */
 }
 
@@ -206,4 +206,71 @@ li {
 .glowing-text {
     color: #fff; /* Change this based on your preference */
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8), 0 0 0px rgba(255, 255, 255, 0.8), 0 0 10px #ac862d, 0 0 10px #b0a829, 0 0 50px #f0f, 0 0 10px #f0f, 0 0 0px #f0f;
+}
+
+
+/* Reset some basic elements */
+body, h1, h2, p, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Hero section styling */
+.hero {
+    background: url('background.jpg') no-repeat center center/cover; /* Adjust path accordingly */
+    position: relative; /* Ensures that the section is positioned relative to its normal position */
+    width: 100vw; /* Viewport width: makes sure it takes full width */
+    height: 100vh;
+    background-size: cover; /* This will cover the entire section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-inner {
+    max-width: 600px; /* Adjust width as needed */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.hero button {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: #007bff; /* Example blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #0056b3;
+}
+
+/* Content sections */
+.content-section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-section p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: auto; /* Center the text block */
 }
